@@ -1,7 +1,6 @@
 #实现由生产数据到产品质量的训练过程
 
 import numpy as np
-import gettrain_x
 import matplotlib as plt
 import tensorflow as tf
 from tensorflow.python.framework import ops
@@ -20,12 +19,16 @@ def initialize_parameters(w1x,w1y,w2x,w3x):
 	
 	tf.set_random_seed(1)
 	W1=tf.get_variable("W1",[w1x,w1y],initializer=tf.contrib.layers.xavier_initializer(seed=1))
+#	W1=tf.get_variable("W1",[w1x,w1y],initializer=tf.contrib.layers.variance_scaling_initializer())
 	b1=tf.get_variable("b1",[w1x,1],initializer=tf.zeros_initializer())
 	W2=tf.get_variable("W2",[w2x,w1x],initializer=tf.contrib.layers.xavier_initializer(seed=1))
+#	W2=tf.get_variable("W2",[w2x,w1x],initializer=tf.contrib.layers.variance_scaling_initializer())
 	b2=tf.get_variable("b2",[w2x,1],initializer=tf.zeros_initializer())
 	W3=tf.get_variable("W3",[w3x,w2x],initializer=tf.contrib.layers.xavier_initializer(seed=1))
+#	W3=tf.get_variable("W3",[w3x,w2x],initializer=tf.contrib.layers.variance_scaling_initializer())
 	b3=tf.get_variable("b3",[w3x,1],initializer=tf.zeros_initializer())
 
+	
 	parameters={"W1":W1,"b1":b1,"W2":W2,"b2":b2,"W3":W3,"b3":b3}
 	
 	return parameters
@@ -39,7 +42,8 @@ def forward_propagation(X,parameters):
 	b2=parameters["b2"]
 	W3=parameters["W3"]
 	b3=parameters["b3"]
-
+	
+	
 	Z1=tf.matmul(W1,X)+b1
 	A1=tf.nn.relu(Z1)
 #	A1=tf.nn.sigmoid(Z1)
@@ -62,7 +66,7 @@ def compute_cost(Z3,Y):
 
 
 #实现三层神经网络
-def model(X_train,Y_train,net_weight,learning_rate=0.015,num_epochs=80000):
+def model(X_train,Y_train,net_weight,learning_rate=0.01,num_epochs=40000):
 	ops.reset_default_graph()
 	tf.set_random_seed(1)
 	seed=3
@@ -81,6 +85,7 @@ def model(X_train,Y_train,net_weight,learning_rate=0.015,num_epochs=80000):
 	cost=compute_cost(Z3,Y)
 
 	optimizer=tf.train.GradientDescentOptimizer(learning_rate=learning_rate).minimize(cost)
+#	optimizer=tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
 
 	init=tf.global_variables_initializer()
 
@@ -117,23 +122,24 @@ def get_parameters(para_file):
 	return parameters
 
 
-r=np.load("train_pvs_sams.npz")
+r=np.load("stagas_train.npz")
 X_train=r["arr_0"].reshape(r["arr_0"].shape[0],-1).T
 Y_train=r["arr_1"].reshape(1,-1)
 net_weight=[20,X_train.shape[0],8,1]
-#parameters=model(X_train,Y_train,net_weight)
-parameters=get_parameters("trained_parameters.npz")
+parameters=model(X_train,Y_train,net_weight)
 
 #np.savez("trained_parameters.npz",parameters["W1"],parameters["b1"],parameters["W2"],parameters["b2"],parameters["W3"],parameters["b3"])
-t=np.load("test_pvs_sams.npz")
+#parameters=get_parameters("trained_parameters.npz")
+t=np.load("stagas_test.npz")
 X_test=t["arr_0"].reshape(t["arr_0"].shape[0],-1).T
 Y_test=t["arr_1"].reshape(1,-1)
 Z=forward_propagation(X_test,parameters)
 sess=tf.Session()
 Z3=sess.run(compute_cost(Z,Y_test))
+Zn=sess.run(Z)
 print(Z3)
 #print(Z3[0,0:20])
 #print(Y_test[0,0:20])
-
-
+print(Y_test*40+170)
+print(Zn*40+170)	
 
