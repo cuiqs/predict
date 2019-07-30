@@ -17,8 +17,8 @@ sample_span={"dieselconl":-30,"dieselconh":30,"stagasdryl":170,"stagasdryh":210,
 class Predict:
 
 #定义需要使用的生产数据
-	pvs=list(maxrange.keys())
-	pvs.sort()
+	pvs=[]
+#	pvs.sort()
 
 #定义取PV时间间隔，及时间跨度，单位是分钟
 	tmdelay=timedelta(minutes=10)
@@ -38,6 +38,7 @@ class Predict:
 	samh=0
 
 	def __init__(self,pvs,tmspan,tmdelay,dt_from,dt_end,sam):
+		pvs.sort()
 		self.pvs=pvs
 		self.tmspan=tmspan
 		self.tmdelay=tmdelay
@@ -106,10 +107,11 @@ class Predict:
 			curtime+=mdelay
 
 #将生产数据集中到一个文件中
-	def gather(produce_data):
-		for f in files:
-			addfile(f)
+	def gather(self,produce_data):
+		for f in self.pvs:
+			self.addfile(f+".csv")
 			print(f)
+"""
 		with open(produce_data,"w") as csvfile:
 			csv_writer=csv.writer(csvfile)
 			for moment in fcc3.keys():
@@ -118,19 +120,18 @@ class Predict:
 				for item in fcc3[moment]:
 					row.append(str(item))
 				csv_writer.writerow(row)
-
+"""
 
 #用PV值除以各自量程，使得数据都小于1
 	def uniform(from_f,to_f):
-		count=len(maxrange)
-		with open(from_f,"r+") as csvrd_file:
-			with open(to_f,"w") as csvwr_file:
+		count=len(self.pvs)
+		with open(to_f,"w") as csvwr_file:
 				csv_writer=csv.writer(csvwr_file)
-				csv_reader=csv.reader(csvrd_file)
-				for row in csv_reader:
+				for key in self.fcc3.keys():
 #					print(row)
-					for i in range(1,count+1):
-						row[i]=str(float(row[i])/maxrange[files[i-1][0:-4]])#测量值比量程，使数据都<1
+					count=len(fcc3[key])
+					for i in range(0,count):
+						self.fcc3[key][i]=(float(self.fcc3[key][i])/maxrange[pvs[i])#测量值比量程，使数据都<1
 					csv_writer.writerow(row)
 
 #从生产数据文件中提取需要的列数据
