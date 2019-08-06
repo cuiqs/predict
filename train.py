@@ -66,7 +66,7 @@ def compute_cost(Z3,Y):
 
 
 #实现三层神经网络
-def model(X_train,Y_train,net_weight,learning_rate=0.01,num_epochs=40000):
+def model(X_train,Y_train,net_weight,learning_rate=0.015,num_epochs=40000):
 	ops.reset_default_graph()
 	tf.set_random_seed(1)
 	seed=3
@@ -122,24 +122,42 @@ def get_parameters(para_file):
 	return parameters
 
 
-r=np.load("stagas_train.npz")
+r=np.load("vapor_press_train.npz")
 X_train=r["arr_0"].reshape(r["arr_0"].shape[0],-1).T
 Y_train=r["arr_1"].reshape(1,-1)
-net_weight=[20,X_train.shape[0],8,1]
+net_weight=[19,X_train.shape[0],8,1]
 parameters=model(X_train,Y_train,net_weight)
 
-#np.savez("trained_parameters.npz",parameters["W1"],parameters["b1"],parameters["W2"],parameters["b2"],parameters["W3"],parameters["b3"])
-#parameters=get_parameters("trained_parameters.npz")
-t=np.load("stagas_test.npz")
-X_test=t["arr_0"].reshape(t["arr_0"].shape[0],-1).T
-Y_test=t["arr_1"].reshape(1,-1)
-Z=forward_propagation(X_test,parameters)
-sess=tf.Session()
-Z3=sess.run(compute_cost(Z,Y_test))
-Zn=sess.run(Z)
-print(Z3)
-#print(Z3[0,0:20])
-#print(Y_test[0,0:20])
-print(Y_test*40+170)
-print(Zn*40+170)	
+np.savez("vapor_press_trained_parameters.npz",parameters["W1"],parameters["b1"],parameters["W2"],parameters["b2"],parameters["W3"],parameters["b3"])
+#parameters=get_parameters("vapor_press_trained_parameters.npz")
+def test(parameters,testfile,scale,low):
+#	parameters=get_parameters("stagasdry_trained_parameters.npz")
+#	print(parameters["W1"].shape)
+	t=np.load(testfile)
+	X_test=t["arr_0"].reshape(t["arr_0"].shape[0],-1).T
+	print(X_test.shape)
+	Y_test=t["arr_1"].reshape(1,-1)
+	Z=forward_propagation(X_test,parameters)
+	sess=tf.Session()
+	Z3=sess.run(compute_cost(Z,Y_test))
+	Zn=sess.run(Z)
+	print(Z3)
+	print(Y_test*scale+low)
+	print(Zn*scale+low)	
 
+def diesel_test():
+	parameters=get_parameters("trained_parameters.npz")
+	t=np.load("diesel_sam_pv81.npz")
+	X_test=t["arr_0"].reshape(t["arr_0"].shape[0],-1).T
+	Y_test=t["arr_1"].reshape(1,-1)
+	Z=forward_propagation(X_test,parameters)
+	sess=tf.Session()
+	Z3=sess.run(compute_cost(Z,Y_test))
+	print(Z3)
+	Zn=sess.run(Z)
+	print(Y_test*60-30)
+	print(Zn*60-30)
+	print((Zn-Y_test)*60)
+
+#diesel_test()
+test(parameters,"vapor_press_test.npz",50,50)
