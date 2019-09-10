@@ -61,12 +61,12 @@ def compute_cost(Z3,Y):
 	labels=tf.reshape(Y,[-1,1])
 
 #	cost=tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=logits,labels=labels))
-	cost=tf.reduce_mean(tf.square(Y-Z3))
+	cost=tf.reduce_mean(tf.square(Y-Z3)/2)
 	return cost
 
 
 #实现三层神经网络
-def model(X_train,Y_train,net_weight,learning_rate=0.015,num_epochs=40000):
+def model(X_train,Y_train,net_weight,learning_rate=0.015,num_epochs=80000):
 	ops.reset_default_graph()
 	tf.set_random_seed(1)
 	seed=3
@@ -122,14 +122,14 @@ def get_parameters(para_file):
 	return parameters
 
 
-r=np.load("vapor_press_train.npz")
-X_train=r["arr_0"].reshape(r["arr_0"].shape[0],-1).T
-Y_train=r["arr_1"].reshape(1,-1)
-net_weight=[19,X_train.shape[0],8,1]
-parameters=model(X_train,Y_train,net_weight)
+#r=np.load("vapor_press_1801_1907_tmspan2_train.npz")
+#X_train=r["arr_0"].reshape(r["arr_0"].shape[0],-1).T
+#Y_train=r["arr_1"].reshape(1,-1)
+#net_weight=[11,X_train.shape[0],8,1]
+#parameters=model(X_train,Y_train,net_weight)
 
-np.savez("vapor_press_trained_parameters.npz",parameters["W1"],parameters["b1"],parameters["W2"],parameters["b2"],parameters["W3"],parameters["b3"])
-#parameters=get_parameters("vapor_press_trained_parameters.npz")
+#np.savez("vapor_press_1801_1907_tmspan2_trained_parameters.npz",parameters["W1"],parameters["b1"],parameters["W2"],parameters["b2"],parameters["W3"],parameters["b3"])
+parameters=get_parameters("vapor_press_1801_1907_tmspan2_trained_parameters.npz")
 def test(parameters,testfile,scale,low):
 #	parameters=get_parameters("stagasdry_trained_parameters.npz")
 #	print(parameters["W1"].shape)
@@ -142,8 +142,10 @@ def test(parameters,testfile,scale,low):
 	Z3=sess.run(compute_cost(Z,Y_test))
 	Zn=sess.run(Z)
 	print(Z3)
-	print(Y_test*scale+low)
-	print(Zn*scale+low)	
+	for i in range(0,Zn.shape[1]):
+		print('{0:.3f} {1:.3f}'.format(Y_test[0][i]*scale+low,Zn[0][i]*scale+low))
+
+	print(np.mean(abs(Y_test-Zn))*scale)
 
 def diesel_test():
 	parameters=get_parameters("trained_parameters.npz")
@@ -160,4 +162,4 @@ def diesel_test():
 	print((Zn-Y_test)*60)
 
 #diesel_test()
-test(parameters,"vapor_press_test.npz",50,50)
+test(parameters,"vapor_press_1907_tmspan2.npz",40,40)

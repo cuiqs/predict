@@ -11,17 +11,19 @@ files=["FCC3_FI1308A_PV.csv","FCC3_FI1314_PV.csv","FCC3_FI1822_PV.csv","FCC3_FIC
 maxrange={"FCC3_FI1308A_PV":[80,70],"FCC3_FI1314_PV":[0,35000],"FCC3_FI1822_PV":[40,60],"FCC3_FIC1105_PV":[5,5],"FCC3_FIC1116_PV":[0,6],"FCC3_FIC1201_PV":[0,250],"FCC3_FIC1204_PV":[0,40],"FCC3_FIC1205_PV":[0,500],"FCC3_FIC1206_PV":[0,300],"FCC3_FIC1214_PV":[0,100],"FCC3_FIC1219_PV":[0,50],"FCC3_FIC1227_PV":[0,30],"FCC3_FIC1301_PV":[0,80],"FCC3_FIC1309_PV":[0,45],"FCC3_FIC1835_PV":[0,75],"FCC3_PI1112_PV":[100,200],"FCC3_PI1201_PV":[50,200],"FCC3_PI1305_PV":[0.5,1],"FCC3_PI1306_PV":[0.5,1],"FCC3_PIC1301_PV":[0.5,1],"FCC3_PIC1303_PV":[0.5,1],"FCC3_TI1219_PV":[50,100],"FCC3_TI1231_PV":[150,100],"FCC3_TI1305_PV":[20,50],"FCC3_TI1313_PV":[20,50],"FCC3_TI1315_PV":[50,100],"FCC3_TI1324_PV":[100,100],"FCC3_TI1325A_PV":[30,50],"FCC3_TI1326B_PV":[100,100],"FCC3_TIC1201_PV":[80,70],"FCC3_TIC1203_PV":[180,100],"FCC3_TIC1217_PV":[280,100],"FCC3_TIC1301_PV":[100,80]}
 
 pvs_mean_var={"FCC3_FI1308A_PV":[80,70],"FCC3_FI1314_PV":[0,35000],"FCC3_FI1822_PV":[40,60],"FCC3_FIC1105_PV":[5,5],"FCC3_FIC1116_PV":[0,6],"FCC3_FIC1201_PV":[0,250],"FCC3_FIC1204_PV":[0,40],"FCC3_FIC1205_PV":[0,500],"FCC3_FIC1206_PV":[0,300],"FCC3_FIC1214_PV":[0,100],"FCC3_FIC1219_PV":[0,50],"FCC3_FIC1227_PV":[0,30],"FCC3_FIC1301_PV":[0,80],"FCC3_FIC1309_PV":[0,45],"FCC3_FIC1835_PV":[0,75],"FCC3_PI1112_PV":[100,200],"FCC3_PI1201_PV":[50,200],"FCC3_PI1305_PV":[0.5,1],"FCC3_PI1306_PV":[0.5,1],"FCC3_PIC1301_PV":[0.5,1],"FCC3_PIC1303_PV":[0.5,1],"FCC3_TI1219_PV":[50,100],"FCC3_TI1231_PV":[150,100],"FCC3_TI1305_PV":[20,50],"FCC3_TI1313_PV":[20,50],"FCC3_TI1315_PV":[50,100],"FCC3_TI1324_PV":[100,100],"FCC3_TI1325A_PV":[30,50],"FCC3_TI1326B_PV":[100,100],"FCC3_TIC1201_PV":[80,70],"FCC3_TIC1203_PV":[180,100],"FCC3_TIC1217_PV":[280,100],"FCC3_TIC1301_PV":[100,80]}
-vapor_press_pvs=["FCC3_FI1308A_PV","FCC3_FI1314_PV","FCC3_FIC1201_PV","FCC3_FIC1214_PV","FCC3_FIC1301_PV","FCC3_FIC1309_PV","FCC3_PI1201_PV","FCC3_PI1305_PV","FCC3_PI1306_PV","FCC3_PIC1301_PV","FCC3_PIC1303_PV","FCC3_TI1305_PV","FCC3_TI1313_PV","FCC3_TI1315_PV","FCC3_TI1324_PV","FCC3_TI1325A_PV","FCC3_TI1326B_PV","FCC3_TIC1201_PV","FCC3_TIC1301_PV"]
+#vapor_press_pvs=["FCC3_FI1308A_PV","FCC3_FI1314_PV","FCC3_FIC1201_PV","FCC3_FIC1214_PV","FCC3_FIC1301_PV","FCC3_FIC1309_PV","FCC3_PI1201_PV","FCC3_PI1305_PV","FCC3_PI1306_PV","FCC3_PIC1301_PV","FCC3_PIC1303_PV","FCC3_TI1305_PV","FCC3_TI1313_PV","FCC3_TI1315_PV","FCC3_TI1324_PV","FCC3_TI1325A_PV","FCC3_TI1326B_PV","FCC3_TIC1201_PV","FCC3_TIC1301_PV"]
+vapor_press_pvs=["FCC3_FI1308A_PV","FCC3_FI1314_PV","FCC3_FIC1301_PV","FCC3_FIC1309_PV","FCC3_PIC1301_PV","FCC3_PIC1303_PV","FCC3_TI1315_PV","FCC3_TI1324_PV","FCC3_TI1325A_PV","FCC3_TI1326B_PV","FCC3_TIC1301_PV"]
 diesel_pvs=["FCC3_FI1822_PV","FCC3_FIC1105_PV","FCC3_FIC1116_PV","FCC3_FIC1201_PV","FCC3_FIC1204_PV","FCC3_FIC1205_PV","FCC3_FIC1206_PV","FCC3_FIC1214_PV","FCC3_FIC1219_PV","FCC3_FIC1227_PV","FCC3_FIC1835_PV","FCC3_PI1112_PV","FCC3_PI1201_PV","FCC3_TI1219_PV","FCC3_TI1231_PV","FCC3_TIC1201_PV","FCC3_TIC1203_PV","FCC3_TIC1217_PV"]
 pvs=list(maxrange.keys())
 pvs.sort()
 vapor_press_pvs.sort()
 filename=["FCC3_FI1308A_PV.csv"]
 #定义取PV时间间隔，及时间跨度，单位是分钟
-tmdelay=timedelta(minutes=10)
-tmspan=timedelta(minutes=240)
+tmdelay=timedelta(minutes=2)
+tmspan=timedelta(minutes=120)
+tmhead=timedelta(minutes=30)
 
-sample_span={"dieselconl":-30,"dieselconh":30,"stagasdryl":170,"stagasdryh":210,"stagaspresl":50,"stagaspresh":100,"lpgc2l":0,"lpgc2h":6,"lpgc5l":0,"lpgc5h":4}
+sample_span={"dieselconl":-30,"dieselconh":30,"stagasdryl":170,"stagasdryh":210,"stagaspresl":40,"stagaspresh":80,"lpgc2l":0,"lpgc2h":6,"lpgc5l":0,"lpgc5h":4}
 
 #dt_from=datetime.strptime("2018-09-27 00:00","%Y-%m-%d %H:%M")
 #dt_end=datetime.strptime("2019-06-05 00:00","%Y-%m-%d %H:%M")
@@ -122,7 +124,7 @@ def uniform(from_f,to_f):
 			for row in csv_reader:
 #				print(row)
 				for i in range(1,count+1):
-					row[i]=str((float(row[i])-maxrange[pvs[i-1]][0])/maxrange[pvs[i-1]][1])#测量值比量程，使数据都<1
+					row[i]=str((float(row[i])-pvs_mean_var[pvs[i-1]][0])/pvs_mean_var[pvs[i-1]][1])#测量值比量程，使数据都<1
 				csv_writer.writerow(row)
 
 #从生产数据文件中提取需要的列数据
@@ -184,8 +186,8 @@ def sample_add_pv(pvfile,c_pvs,samplefile,sample):
 	i=0
 	for end_tm,val in samples.items():
 		na_sam[i]=val
-		tm=end_tm
-		begin_tm=end_tm-tmspan
+		tm=end_tm-tmhead	#采样时间提前1小时
+		begin_tm=end_tm-tmspan-tmhead
 		j=0
 		print(end_tm)
 		while(tm>begin_tm):
@@ -234,8 +236,15 @@ def random_and_classes(npzfile,train_set_file,test_set_file):
 #get_sample("chaiyou.csv","chaiyou")
 
 #sample_add_pv("produce730du.csv","chaiyou.csv",diesel_pvs,"stagas")
-#na_sams,na_pvs=sample_add_pv("produce730u.csv",vapor_press_pvs,"vapor.csv","vapor_press")
-#np.savez("vapor_press_1907.npz",na_pvs,na_sams)
-#random_and_classes("lpgc5.npz","lpgc5_train.npz","lpgc5_test.npz")
-get_pvs_mean_var("produce730.csv")
+na_sams,na_pvs=sample_add_pv("produce730u.csv",vapor_press_pvs,"vapor19-07.csv","vapor_press")
+np.savez("vapor_press_1907_tmspan2.npz",na_pvs,na_sams)
+#random_and_classes("vapor_press_1801_1906_tmspan2.npz","vapor_press_1801_1907_tmspan2_train.npz","vapor_press_1801_1907_tmspan2_test.npz")
 
+#改变数据预处理方法
+"""
+get_pvs_mean_var("produce1810-1906.csv")
+uniform("produce1810-1906.csv","produce1810-1906_mean_var.csv")
+na_sams,na_pvs=sample_add_pv("produce1810-1906_mean_var.csv",diesel_pvs,"chaiyou.csv","chaiyou")
+np.savez("diesel_mean_var.npz",na_pvs,na_sams)
+random_and_classes("diesel_mean_var.npz","diesel_mean_var_train.npz","diesel_mean_var_test.npz")
+"""
