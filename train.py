@@ -1,7 +1,7 @@
 #实现由生产数据到产品质量的训练过程
 
 import numpy as np
-import matplotlib as plt
+#import matplotlib as plt
 import tensorflow as tf
 from tensorflow.python.framework import ops
 import time
@@ -162,4 +162,4 @@ def diesel_test():
 	print((Zn-Y_test)*60)
 
 #diesel_test()
-test(parameters,"vapor_press_1907_tmspan2.npz",40,40)
+#test(parameters,"vapor_press_1907_tmspan2.npz",40,40)
